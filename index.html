@@ -15,7 +15,7 @@
       <div class="header__container">
         <h1 class="logo">Boolflix</h1>
         <div class="actions">
-          <input type="text" name="" value="" placeholder="Titolo film">
+          <input type="text" name="" @keydown.enter="getMovies()" v-model="movieTitleInput" placeholder="Titolo film">
           <button @click="getMovies()" type="button" name="button">Cerca</button>
         </div>
       </div>
