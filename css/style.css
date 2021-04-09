@@ -29,6 +29,10 @@ ul {
   font-size: 24px;
 }
 
+.fa-star {
+  color: #FFBD00;
+}
+
 /* Header */
 .header__container {
   display: flex;
@@ -45,6 +49,27 @@ ul {
   color: red;
   font-size: 30px;
   text-transform: uppercase;
+}
+
+.title-search,
+.btn {
+  font-size: 20px;
+}
+
+.pages {
+  display: flex;
+  position: absolute;
+  bottom: -30px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 18px;
+  align-items: center;
+}
+
+.pages button {
+  margin: 0 10px;
+  font-size: 18px;
+  padding: 0 10px;
 }
 
 /* Main */

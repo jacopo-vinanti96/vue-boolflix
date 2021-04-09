@@ -16,9 +16,13 @@
       <div class="header__container">
         <h1 class="logo">Boolflix</h1>
         <div class="actions">
-          <input type="text" name="" @keydown.enter="getMovies()" v-model="movieTitleInput" placeholder="Titolo film">
-          <button @click="getMovies()" type="button" name="button">Cerca</button>
+          <input class="title-search" type="text" name="title-search" @keydown.enter="getMovies()" v-model="movieTitleInput" placeholder="Titolo film">
+          <button class="btn" @click="getMovies()" type="button" name="button">Cerca</button>
         </div>
+        <ul class="pages">
+          <li><span>Pagine: </span></li>
+          <li v-for="page in pages" class="page"><button type="button" name="button" :value="page">{{page}}</button></li>
+        </ul>
       </div>
     </header>
     <main>

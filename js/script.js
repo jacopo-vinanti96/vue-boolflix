@@ -3,6 +3,7 @@ const app = new Vue ({
   data: {
     moviesQuery: [],
     movieTitleInput: '',
+    pages: 0,
   },
   methods: {
     getMovies() {
@@ -15,6 +16,8 @@ const app = new Vue ({
         })
         .then( (arr) => {
           this.moviesQuery = arr.data.results;
+          this.pages = arr.data.total_pages;
+          console.log(this.pages);
           this.convertVoteAvg();
           console.log(this.moviesQuery);
         });
