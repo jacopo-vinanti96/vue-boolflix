@@ -7,6 +7,7 @@
   <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"></script>
   <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
   <title>Boolflix</title>
 </head>
 <body>
@@ -25,6 +26,7 @@
         <li v-for="movie in moviesQuery" class="movie-container">
           <div class="movie-card">
             <img v-if="movie.poster_path != null" class="img--poster" :src="'https://image.tmdb.org/t/p/w300' + movie.poster_path" alt="movie.title">
+            <!-- Se il poster non viene trovato nel db -->
             <div v-else-if="movie.poster_path == null" class="poster-null">
               <span class="poster-null__title">{{ movie.title }}</span>
               <span class="poster-null__error">Poster not available X</span>
@@ -33,8 +35,11 @@
           <ul class="movie-data">
             <li class="text--feat">Titolo: <span class="text--desc">{{movie.title}}</span></li>
             <li class="text--feat">Titolo originale: <span class="text--desc">{{movie.original_title}}</span></li>
-            <li class="text--feat">Voto: <span class="text--desc">{{movie.vote_average}}</span></li>
-            <li class="text--feat">Overview: <span class="text--desc">{{movie.overview}}</li>
+            <li class="text--feat">Voto:
+              <i v-for="unit in movie.rating" class="fas fa-star"></i><!--
+              !--><i v-for="unit in ( 5 -  movie.rating )" class="far fa-star"></i>
+            </li>
+            <li class="text--feat">Overview: <span class="text--desc">{{movie.overview}}</span></li>
           </ul>
         </li>
       </ul>

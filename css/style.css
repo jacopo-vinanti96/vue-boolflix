@@ -25,6 +25,10 @@ ul {
   color: lightgrey;
 }
 
+.text--rating {
+  font-size: 24px;
+}
+
 /* Header */
 .header__container {
   display: flex;
@@ -55,8 +59,9 @@ main {
   justify-content: space-evenly;
   background-color: grey;
   overflow: auto;
-  height: 100%;
-  padding: 100px 30px 60px;
+  height: calc( 100% - 74px);
+  margin-top: 74px;
+  padding: 26px 30px 60px;
   align-items: flex-end;
 }
 
