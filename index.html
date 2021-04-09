@@ -12,22 +12,26 @@
 <body>
   <div id="main-app">
     <header>
-      <h1 class="logo">Boolflix</h1>
-      <div class="actions">
-        <input type="text" name="" value="">
-        <button @click="getMovies()" type="button" name="button">Click</button>
+      <div class="header__container">
+        <h1 class="logo">Boolflix</h1>
+        <div class="actions">
+          <input type="text" name="" value="" placeholder="Titolo film">
+          <button @click="getMovies()" type="button" name="button">Cerca</button>
+        </div>
       </div>
     </header>
-    <main >
-      <div v-for="movie in moviesQuery" class="movie-container">
-        <div class="movie-card">
-          <img v-if="movie.poster_path != null" class="img--poster" :src="'https://image.tmdb.org/t/p/w300' + movie.poster_path" alt="movie.title">
-          <img v-if="movie.poster_path == null" class="img--poster" src="https://via.placeholder.com/300x450.png?text=POSTER+NOT+AVAILABLE" alt="Poster not available">
-        </div>
-        <div class="movie-data">
-          <span class="text text--title">ciao</span>
-          <span class="text text--genre">ciao</span>
-          <span class="text text--year">ciao</span>
+    <main>
+      <div class="main__container">
+        <div v-for="movie in moviesQuery" class="movie-container">
+          <div class="movie-card">
+            <img v-if="movie.poster_path != null" class="img--poster" :src="'https://image.tmdb.org/t/p/w300' + movie.poster_path" alt="movie.title">
+            <img v-else-if="movie.poster_path == null" class="img--poster" src="https://via.placeholder.com/300x450.png?text=POSTER+NOT+AVAILABLE" alt="Poster not available">
+          </div>
+          <div class="movie-data">
+            <span class="text text--title">ciao</span>
+            <span class="text text--genre">ciao</span>
+            <span class="text text--year">ciao</span>
+          </div>
         </div>
       </div>
 
