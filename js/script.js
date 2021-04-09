@@ -7,8 +7,8 @@ const app = new Vue ({
     getMovies() {
       axios.get('https://api.themoviedb.org/3/search/movie', {
         params: {
-          'api_key': 'afbb7def2542bc20b7d5bfd24baf9b6a',
-          'query': 'ciao'
+          api_key: 'afbb7def2542bc20b7d5bfd24baf9b6a',
+          query: 'ciao'
         }
       })
       .then( (arr) => {

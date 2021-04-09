@@ -21,7 +21,8 @@
     <main >
       <div v-for="movie in moviesQuery" class="movie-container">
         <div class="movie-card">
-          <img class="img--poster" :src="'https://image.tmdb.org/t/p/w300' + movie.poster_path" alt="">
+          <img v-if="movie.poster_path != null" class="img--poster" :src="'https://image.tmdb.org/t/p/w300' + movie.poster_path" alt="movie.title">
+          <img v-if="movie.poster_path == null" class="img--poster" src="https://via.placeholder.com/300x450.png?text=POSTER+NOT+AVAILABLE" alt="Poster not available">
         </div>
         <div class="movie-data">
           <span class="text text--title">ciao</span>
