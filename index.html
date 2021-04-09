@@ -27,7 +27,8 @@
     </header>
     <main>
       <ul class="movies-container">
-        <li v-for="movie in moviesQuery" class="movie-container">
+        <li v-for="movie in moviesQuery" :class="{first: movie.first == true}" class="movie-container">
+          <h2 v-if="movie.first == true">Film</h2>
           <div class="movie-card">
             <img v-if="movie.poster_path != null" class="img--poster" :src="'https://image.tmdb.org/t/p/w300' + movie.poster_path" alt="movie.title">
             <!-- Se il poster non viene trovato nel db -->

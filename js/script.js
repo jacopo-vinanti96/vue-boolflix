@@ -15,6 +15,7 @@ const app = new Vue ({
           }
         })
         .then( (arr) => {
+          arr.data.results[0]['first'] = true;
           this.moviesQuery = arr.data.results;
           this.pages = arr.data.total_pages;
           console.log(this.pages);

@@ -59,14 +59,18 @@ ul {
 .pages {
   display: flex;
   position: absolute;
-  bottom: -30px;
+  top: 74px;
   left: 50%;
   transform: translateX(-50%);
   font-size: 18px;
   align-items: center;
+  background-color: rgba(0, 0, 0, 0.8);
+  color: white;
+  padding: 10px;
 }
 
 .pages button {
+  color: black;
   margin: 0 10px;
   font-size: 18px;
   padding: 0 10px;
@@ -95,8 +99,18 @@ main {
   position: relative;
 }
 
+.movie-container.first {
+  margin-top: 160px;
+}
+
 .movie-container:hover .movie-data {
   opacity: 1;
+}
+
+h2 {
+  position: absolute;
+  font-size: 50px;
+  top: -120px;
 }
 
 .movie-data {
