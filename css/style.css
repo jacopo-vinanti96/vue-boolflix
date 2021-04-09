@@ -1,0 +1,15 @@
+/* Reset */
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+/* Body */
+
+/* Header */
+.logo {
+  color: red;
+  font-size: 30px;
+  text-transform: uppercase;
+}

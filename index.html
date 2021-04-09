@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"></script>
+  <link rel="stylesheet" href="css/style.css">
+  <title>Boolflix</title>
+</head>
+<body>
+  <div id="main-app">
+    <header>
+      <h1 class="logo">Boolflix</h1>
+      <div class="actions">
+        <input type="text" name="" value="">
+        <button @click="getMovies()" type="button" name="button">Click</button>
+      </div>
+    </header>
+    <main >
+      <div v-for="movie in moviesQuery" class="movie-container">
+        <div class="movie-card">
+          <img class="img--poster" :src="'https://image.tmdb.org/t/p/w300' + movie.poster_path" alt="">
+        </div>
+        <div class="movie-data">
+          <span class="text text--title">ciao</span>
+          <span class="text text--genre">ciao</span>
+          <span class="text text--year">ciao</span>
+        </div>
+      </div>
+
+    </main>
+  </div>
+
+  <script src="js/script.js" charset="utf-8"></script>
+</body>
+</html>
