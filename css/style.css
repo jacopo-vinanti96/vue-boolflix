@@ -5,9 +5,24 @@
   box-sizing: border-box;
 }
 
+ul {
+  list-style: none;
+}
+
 /* Body */
 #main-app {
   height: 100vh;
+}
+
+/* Mix */
+.text--feat {
+  display: block;
+  color: white;
+  font-size: 23px;
+}
+
+.text--desc {
+  color: lightgrey;
 }
 
 /* Header */
@@ -19,6 +34,7 @@
   background-color: black;
   position: fixed;
   width: 100%;
+  z-index: 12;
 }
 
 .logo {
@@ -33,7 +49,7 @@ main {
   height: 100%;
 }
 
-.main__container {
+.movies-container {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-evenly;
@@ -46,6 +62,7 @@ main {
 
 .movie-container {
   margin: 60px 30px 0;
+  position: relative;
 }
 
 .movie-container:hover .movie-data {
@@ -53,6 +70,38 @@ main {
 }
 
 .movie-data {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.8);
   opacity: 0;
   transition: opacity 0.8s;
+  color: lightgrey;
+  padding: 40px 15px;
+}
+
+.poster-null {
+  width: 300px;
+  height: 450px;
+  background-color: black;
+  color: white;
+  display: flex;
+  flex-wrap: wrap;
+  align-content: center;
+  justify-content: center;
+  padding: 10px;
+}
+
+.poster-null__title {
+  font-size: 30px;
+  margin-bottom: 20px;
+  width: 100%;
+  text-align: center;
+}
+
+.poster-null__error {
+  font-size: 20px;
+  color: lightgrey;
 }
