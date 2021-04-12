@@ -16,35 +16,61 @@
       <div class="header__container">
         <h1 class="logo">Boolflix</h1>
         <div class="actions">
-          <input class="title-search" type="text" name="title-search" @keydown.enter="getMovies()" v-model="movieTitleInput" placeholder="Titolo film">
+          <input class="title-search" type="text" name="title-search" @keydown.enter="getMovies()" v-model="TitleInput" placeholder="Titolo film">
           <button class="btn" @click="getMovies()" type="button" name="button">Cerca</button>
         </div>
         <ul class="pages">
           <li><span>Pagine: </span></li>
-          <li v-for="page in pages" class="page"><button type="button" name="button" :value="page">{{page}}</button></li>
+          <li v-for="page in ( tvPages + moviePages )" class="page"><button type="button" name="button" :value="page">{{ page }}</button></li>
         </ul>
       </div>
     </header>
     <main>
       <ul class="movies-container">
-        <li v-for="movie in moviesQuery" :class="{first: movie.first == true}" class="movie-container">
-          <h2 v-if="movie.first == true">Film</h2>
+        <!-- Template film -->
+        <li v-if="moviesQuery.length > 0" class="section-title">
+          <h2>Film</h2>
+        </li>
+        <li v-for="movie in moviesQuery" class="movie-container">
           <div class="movie-card">
             <img v-if="movie.poster_path != null" class="img--poster" :src="'https://image.tmdb.org/t/p/w300' + movie.poster_path" alt="movie.title">
             <!-- Se il poster non viene trovato nel db -->
             <div v-else-if="movie.poster_path == null" class="poster-null">
               <span class="poster-null__title">{{ movie.title }}</span>
-              <span class="poster-null__error">Poster not available X</span>
+              <span class="poster-null__error">Poster non disponibile X</span>
             </div>
           </div>
           <ul class="movie-data">
-            <li class="text--feat">Titolo: <span class="text--desc">{{movie.title}}</span></li>
-            <li class="text--feat">Titolo originale: <span class="text--desc">{{movie.original_title}}</span></li>
+            <li class="text--feat">Titolo: <span class="text--desc">{{ movie.title }}</span></li>
+            <li class="text--feat">Titolo originale: <span class="text--desc">{{ movie.original_title }}</span></li>
             <li class="text--feat">Voto:
               <i v-for="unit in movie.rating" class="fas fa-star"></i><!--
               !--><i v-for="unit in ( 5 -  movie.rating )" class="far fa-star"></i>
             </li>
-            <li class="text--feat">Overview: <span class="text--desc">{{movie.overview}}</span></li>
+            <li class="text--feat">Overview: <span class="text--desc">{{ movie.overview }}</span></li>
+          </ul>
+        </li>
+        <!-- Template serie tv -->
+        <li v-if="tvSeriesQuery.length > 0" class="section-title">
+          <h2>Serie tv</h2>
+        </li>
+        <li v-for="show in tvSeriesQuery" class="movie-container">
+          <div class="movie-card">
+            <img v-if="show.backdrop_path != null" class="img--poster" :src="'https://image.tmdb.org/t/p/w300' + show.backdrop_path" alt="show.name">
+            <!-- Se il poster non viene trovato nel db -->
+            <div v-else-if="show.backdrop_path == null" class="poster-null">
+              <span class="poster-null__title">{{ show.name }}</span>
+              <span class="poster-null__error">Poster non disponibile X</span>
+            </div>
+          </div>
+          <ul class="movie-data">
+            <li class="text--feat">Titolo: <span class="text--desc">{{ show.name }}</span></li>
+            <li class="text--feat">Titolo originale: <span class="text--desc">{{ show.original_name }}</span></li>
+            <li class="text--feat">Voto:
+              <i v-for="unit in show.rating" class="fas fa-star"></i><!--
+              !--><i v-for="unit in ( 5 -  show.rating )" class="far fa-star"></i>
+            </li>
+            <li class="text--feat">Overview: <span class="text--desc">{{ show.overview }}</span></li>
           </ul>
         </li>
       </ul>

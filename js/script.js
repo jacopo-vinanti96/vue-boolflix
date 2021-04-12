@@ -2,30 +2,44 @@ const app = new Vue ({
   el: '#main-app',
   data: {
     moviesQuery: [],
-    movieTitleInput: '',
-    pages: 0,
+    tvSeriesQuery: [],
+    TitleInput: '',
+    moviePages: 0,
+    tvPages: 0,
   },
   methods: {
     getMovies() {
-      if ( this.movieTitleInput != '' ) {
+      if ( this.TitleInput != '' ) {
         axios.get('https://api.themoviedb.org/3/search/movie', {
           params: {
             api_key: 'afbb7def2542bc20b7d5bfd24baf9b6a',
-            query: this.movieTitleInput,
+            query: this.TitleInput,
           }
         })
         .then( (arr) => {
-          arr.data.results[0]['first'] = true;
           this.moviesQuery = arr.data.results;
-          this.pages = arr.data.total_pages;
+          this.moviePages = arr.data.total_pages;
           console.log(this.pages);
-          this.convertVoteAvg();
+          this.convertVoteAvg(this.moviesQuery);
           console.log(this.moviesQuery);
+        });
+        axios.get('https://api.themoviedb.org/3/search/tv', {
+          params: {
+            api_key: 'afbb7def2542bc20b7d5bfd24baf9b6a',
+            query: this.TitleInput,
+          }
+        })
+        .then( (arr) => {
+          this.tvSeriesQuery = arr.data.results;
+          this.tvPages = arr.data.total_pages;
+          console.log(this.pages);
+          this.convertVoteAvg(this.tvSeriesQuery);
+          console.log(this.tvSeriesQuery);
         });
       }
     },
-    convertVoteAvg() {
-      this.moviesQuery.forEach( (movie) => {
+    convertVoteAvg(thisArr) {
+      thisArr.forEach( (movie) => {
         const rating = Math.floor( movie.vote_average / 2 );
         movie['rating'] = rating;
       })

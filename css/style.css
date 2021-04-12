@@ -99,18 +99,15 @@ main {
   position: relative;
 }
 
-.movie-container.first {
-  margin-top: 160px;
-}
-
 .movie-container:hover .movie-data {
   opacity: 1;
 }
 
-h2 {
-  position: absolute;
-  font-size: 50px;
-  top: -120px;
+.section-title {
+  font-size: 40px;
+  margin: 80px 0 40px 0;
+  text-align: center;
+  width: 100%;
 }
 
 .movie-data {
