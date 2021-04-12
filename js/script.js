@@ -6,6 +6,7 @@ const app = new Vue ({
     TitleInput: '',
     moviePages: 0,
     tvPages: 0,
+    languages: ['en', 'de', 'es', 'fr', 'it', 'pt'],
   },
   methods: {
     getMovies() {

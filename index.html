@@ -47,6 +47,10 @@
               <i v-for="unit in movie.rating" class="fas fa-star"></i><!--
               !--><i v-for="unit in ( 5 -  movie.rating )" class="far fa-star"></i>
             </li>
+            <li class="text--feat">Language:
+              <img v-if="languages.includes( movie.original_language )" :src="'icons/' + movie.original_language + '.png'" :alt="movie.original_language">
+              <span class="text--desc" v-if="languages.includes( movie.original_language ) == false">{{ movie.original_language }}</span>
+            </li>
             <li class="text--feat">Overview: <span class="text--desc">{{ movie.overview }}</span></li>
           </ul>
         </li>
@@ -69,6 +73,10 @@
             <li class="text--feat">Voto:
               <i v-for="unit in show.rating" class="fas fa-star"></i><!--
               !--><i v-for="unit in ( 5 -  show.rating )" class="far fa-star"></i>
+            </li>
+            <li class="text--feat">Language:
+              <img v-if="languages.includes( show.original_language )" :src="'icons/' + show.original_language + '.png'" :alt="show.original_language">
+              <span class="text--desc" v-if="languages.includes( show.original_language ) == false">{{ show.original_language }}</span>
             </li>
             <li class="text--feat">Overview: <span class="text--desc">{{ show.overview }}</span></li>
           </ul>
