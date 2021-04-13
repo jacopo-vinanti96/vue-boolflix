@@ -29,6 +29,7 @@ const app = new Vue ({
       return axios.get( this.baseURL + type, this.paramsAxios );
     },
     search() {
+      this.TitleInput = document.getElementById('title-search').value;
       if ( this.TitleInput != '' ) {
         this.getMovies();
         this.getSeries();
@@ -57,12 +58,6 @@ const app = new Vue ({
         const rating = Math.round( movie.vote_average / 2 );
         movie['rating'] = rating;
       })
-    },
-    selectMovBtn(page) {
-
-    },
-    selectMovBtn(page) {
-
     },
   }
 });
