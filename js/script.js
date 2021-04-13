@@ -5,8 +5,14 @@ const app = new Vue ({
   el: '#app',
   data: {
     baseURL: 'https://api.themoviedb.org/3/search/',
-    lang: 'it-IT',
-    apiKey: 'afbb7def2542bc20b7d5bfd24baf9b6a',
+    paramsAxios: {
+      params: {
+        language: 'it-IT',
+        api_key: 'afbb7def2542bc20b7d5bfd24baf9b6a',
+        query: '',
+        page: 1,
+      }
+    },
     moviesQuery: [],
     tvSeriesQuery: [],
     TitleInput: '',
@@ -15,37 +21,32 @@ const app = new Vue ({
     flags: ['en', 'de', 'es', 'fr', 'it', 'pt'],
   },
   methods: {
-    getMovies() {
+    apiGet(type, page) {
+      this.paramsAxios.params.page = page;
+      this.paramsAxios.params.query = this.TitleInput;
+      return axios.get( this.baseURL + type, this.paramsAxios );
+    },
+    search() {
       if ( this.TitleInput != '' ) {
-        axios.get( this.baseURL + 'movie', {
-          params: {
-            api_key: this.apiKey,
-            language: this.lang,
-            query: this.TitleInput,
-          }
-        })
-        .then( (arr) => {
-          this.moviesQuery = arr.data.results;
-          this.moviePages = arr.data.total_pages;
-          console.log(this.moviePages);
-          this.convertVoteAvg(this.moviesQuery);
-          console.log(this.moviesQuery[0].overview.length);
-        });
-        axios.get( this.baseURL + 'tv', {
-          params: {
-            api_key: this.apiKey,
-            language: this.lang,
-            query: this.TitleInput,
-          }
-        })
-        .then( (arr) => {
-          this.tvSeriesQuery = arr.data.results;
-          this.tvPages = arr.data.total_pages;
-          console.log(this.tvPages);
-          this.convertVoteAvg(this.tvSeriesQuery);
-          console.log(this.tvSeriesQuery);
-        });
+        this.getMovies();
+        this.getSeries();
       }
+    },
+    getMovies(page = 1) {
+      this.apiGet('movie', page)
+      .then( (arr) => {
+        this.moviesQuery = arr.data.results;
+        this.moviePages = arr.data.total_pages;
+        this.convertVoteAvg(this.moviesQuery);
+      });
+    },
+    getSeries(page = 1) {
+      this.apiGet('tv', page)
+      .then( (arr) => {
+        this.tvSeriesQuery = arr.data.results;
+        this.tvPages = arr.data.total_pages;
+        this.convertVoteAvg(this.tvSeriesQuery);
+      });
     },
     convertVoteAvg(thisArr) {
       thisArr.forEach( (movie) => {
