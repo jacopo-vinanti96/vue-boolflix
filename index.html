@@ -21,10 +21,6 @@
           <input class="title-search" type="text" name="title-search" @keydown.enter="search()" v-model="TitleInput" placeholder="Titolo film">
           <button class="btn" @click="search()" type="button" name="button">Cerca</button>
         </div>
-        <ul class="pages">
-          <li><span>Pagine: </span></li>
-          <li v-for="page in ( tvPages + moviePages )" class="page"><button type="button" name="button" :value="page">{{ page }}</button></li>
-        </ul>
       </div>
     </header>
     <main>
@@ -65,6 +61,12 @@
             </ul>
           </div>
         </li>
+        <li class="pages-container">
+          <ul class="pages">
+            <li><span>Pagine: </span></li>
+            <li v-for="page in moviePages" class="page"><button @click="getMovies(page)" type="button" name="button" :value="page">{{ page }}</button></li>
+          </ul>
+        </li>
         <!-- Template serie tv -->
         <li v-if="tvSeriesQuery.length > 0" class="section-title">
           <h2>Serie tv</h2>
@@ -100,6 +102,12 @@
               <li v-if="show.overview.length > 0" class="text--feat">Overview: <span class="text--desc">{{ show.overview }}</span></li>
             </ul>
           </div>
+        </li>
+        <li class="pages-container">
+          <ul class="pages">
+            <li><span>Pagine: </span></li>
+            <li v-for="page in tvPages" class="page"><button @click="getSeries(page)" type="button" name="button" :value="page">{{ page }}</button></li>
+          </ul>
         </li>
       </ul>
     </main>

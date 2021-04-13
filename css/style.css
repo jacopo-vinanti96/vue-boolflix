@@ -64,26 +64,6 @@ ul {
   font-size: 20px;
 }
 
-.pages {
-  display: flex;
-  position: absolute;
-  top: 74px;
-  left: 50%;
-  transform: translateX(-50%);
-  font-size: 18px;
-  align-items: center;
-  background-color: rgba(0, 0, 0, 0.8);
-  color: white;
-  padding: 10px;
-}
-
-.pages button {
-  color: black;
-  margin: 0 10px;
-  font-size: 18px;
-  padding: 0 10px;
-}
-
 /* Main */
 main {
   overflow: hidden;
@@ -136,7 +116,7 @@ main {
 
 .section-title {
   font-size: 40px;
-  margin-top: 120px;
+  margin-top: 40px;
   text-align: center;
   width: 100%;
   box-shadow: 0 -15px 10px -15px black;
@@ -188,4 +168,27 @@ main {
 
 .poster-null__placeholder {
   width: 100%;
+}
+
+.pages-container {
+  width: 100%;
+}
+
+.pages {
+  width: max-content;
+  margin: auto;
+  margin-top: 40px;
+  display: flex;
+  font-size: 18px;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.8);
+  color: white;
+  padding: 10px;
+}
+
+.pages button {
+  color: black;
+  margin: 0 10px;
+  font-size: 18px;
+  padding: 0 10px;
 }
