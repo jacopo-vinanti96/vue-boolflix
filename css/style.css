@@ -95,8 +95,8 @@ main {
   justify-content: space-evenly;
   background-color: #511E15;
   overflow: auto;
-  height: calc( 100% - 74px);
-  margin-top: 74px;
+  height: calc( 100% - 85px);
+  margin-top: 85px;
   padding: 26px 30px 60px;
   align-items: flex-end;
 }
