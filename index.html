@@ -64,7 +64,7 @@
         <li class="pages-container">
           <ul class="pages">
             <li><span>Pagine: </span></li>
-            <li v-for="page in moviePages" class="page"><button @click="getMovies(page)" type="button" name="button" :value="page">{{ page }}</button></li>
+            <li v-for="page in moviePages" class="page"><button class="btn btn--mov" :class="{ 'btn--selected': btnMovSelected == page }" @click="getMovies(page);" type="button" name="button" :value="page">{{ page }}</button></li>
           </ul>
         </li>
         <!-- Template serie tv -->
@@ -106,7 +106,7 @@
         <li class="pages-container">
           <ul class="pages">
             <li><span>Pagine: </span></li>
-            <li v-for="page in tvPages" class="page"><button @click="getSeries(page)" type="button" name="button" :value="page">{{ page }}</button></li>
+            <li v-for="page in tvPages" class="page"><button class="btn btn--tv" :class="{ 'btn--selected': btnTvSelected == page }" @click="getSeries(page);" type="button" name="button" :value="page">{{ page }}</button></li>
           </ul>
         </li>
       </ul>

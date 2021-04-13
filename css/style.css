@@ -11,6 +11,17 @@ ul {
 
 
 /* Mix */
+.btn {
+  color: black;
+  margin: 0 10px;
+  font-size: 18px;
+  padding: 0 10px;
+}
+
+.btn--selected {
+  background-color: #511E15;
+}
+
 .text--feat {
   display: block;
   color: white;
@@ -176,19 +187,14 @@ main {
 
 .pages {
   width: max-content;
+  max-width: 100%;
   margin: auto;
   margin-top: 40px;
   display: flex;
+  flex-wrap: wrap;
   font-size: 18px;
   align-items: center;
   background-color: rgba(0, 0, 0, 0.8);
   color: white;
   padding: 10px;
-}
-
-.pages button {
-  color: black;
-  margin: 0 10px;
-  font-size: 18px;
-  padding: 0 10px;
 }

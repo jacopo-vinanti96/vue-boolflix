@@ -16,9 +16,11 @@ const app = new Vue ({
     moviesQuery: [],
     tvSeriesQuery: [],
     TitleInput: '',
-    moviePages: 0,
-    tvPages: 0,
+    moviePages: 1,
+    tvPages: 1,
     flags: ['en', 'de', 'es', 'fr', 'it', 'pt'],
+    btnMovSelected: 1,
+    btnTvSelected: 1,
   },
   methods: {
     apiGet(type, page) {
@@ -37,6 +39,7 @@ const app = new Vue ({
       .then( (arr) => {
         this.moviesQuery = arr.data.results;
         this.moviePages = arr.data.total_pages;
+        this.btnMovSelected = page;
         this.convertVoteAvg(this.moviesQuery);
       });
     },
@@ -45,6 +48,7 @@ const app = new Vue ({
       .then( (arr) => {
         this.tvSeriesQuery = arr.data.results;
         this.tvPages = arr.data.total_pages;
+        this.btnTvSelected = page;
         this.convertVoteAvg(this.tvSeriesQuery);
       });
     },
@@ -53,6 +57,12 @@ const app = new Vue ({
         const rating = Math.round( movie.vote_average / 2 );
         movie['rating'] = rating;
       })
-    }
+    },
+    selectMovBtn(page) {
+
+    },
+    selectMovBtn(page) {
+
+    },
   }
 });
