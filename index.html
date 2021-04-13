@@ -6,12 +6,14 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"></script>
-  <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Oswald&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
   <title>Boolflix</title>
 </head>
 <body>
-  <div id="main-app">
+  <div id="app">
     <header>
       <div class="header__container">
         <h1 class="logo">Boolflix</h1>
@@ -26,7 +28,7 @@
       </div>
     </header>
     <main>
-      <ul class="movies-container">
+      <ul class="main-container">
         <!-- Template film -->
         <li v-if="moviesQuery.length > 0" class="section-title">
           <h2>Film</h2>
@@ -35,7 +37,10 @@
           <div class="movie-card">
             <img v-if="movie.poster_path != null" class="img--poster" :src="'https://image.tmdb.org/t/p/w300' + movie.poster_path" alt="movie.title">
             <!-- Se il poster non viene trovato nel db -->
-            <div v-else-if="movie.poster_path == null" class="poster-null">
+            <div v-else-if="movie.backdrop_path != null" class="poster-null">
+              <img :src="'https://image.tmdb.org/t/p/w300' + movie.backdrop_path" alt="movie.name">
+            </div>
+            <div v-else class="poster-null">
               <span class="poster-null__title">{{ movie.title }}</span>
               <span class="poster-null__error">Poster non disponibile X</span>
             </div>
@@ -48,10 +53,10 @@
               !--><i v-for="unit in ( 5 -  movie.rating )" class="far fa-star"></i>
             </li>
             <li class="text--feat">Language:
-              <img v-if="languages.includes( movie.original_language )" :src="'icons/' + movie.original_language + '.png'" :alt="movie.original_language">
-              <span class="text--desc" v-if="languages.includes( movie.original_language ) == false">{{ movie.original_language }}</span>
+              <img v-if="flags.includes( movie.original_language )" :src="'icons/' + movie.original_language + '.png'" :alt="movie.original_language">
+              <span v-else class="text--desc">{{ movie.original_language }}</span>
             </li>
-            <li class="text--feat">Overview: <span class="text--desc">{{ movie.overview }}</span></li>
+            <li v-if="movie.overview.length > 0" class="text--feat">Overview: <span class="text--desc">{{ movie.overview }}</span></li>
           </ul>
         </li>
         <!-- Template serie tv -->
@@ -60,9 +65,12 @@
         </li>
         <li v-for="show in tvSeriesQuery" class="movie-container">
           <div class="movie-card">
-            <img v-if="show.backdrop_path != null" class="img--poster" :src="'https://image.tmdb.org/t/p/w300' + show.backdrop_path" alt="show.name">
+            <img v-if="show.poster_path != null" class="img--poster" :src="'https://image.tmdb.org/t/p/w300' + show.poster_path" alt="show.name">
             <!-- Se il poster non viene trovato nel db -->
-            <div v-else-if="show.backdrop_path == null" class="poster-null">
+            <div v-else-if="show.backdrop_path != null" class="poster-null">
+              <img :src="'https://image.tmdb.org/t/p/w300' + show.backdrop_path" alt="show.name">
+            </div>
+            <div v-else class="poster-null">
               <span class="poster-null__title">{{ show.name }}</span>
               <span class="poster-null__error">Poster non disponibile X</span>
             </div>
@@ -75,10 +83,10 @@
               !--><i v-for="unit in ( 5 -  show.rating )" class="far fa-star"></i>
             </li>
             <li class="text--feat">Language:
-              <img v-if="languages.includes( show.original_language )" :src="'icons/' + show.original_language + '.png'" :alt="show.original_language">
-              <span class="text--desc" v-if="languages.includes( show.original_language ) == false">{{ show.original_language }}</span>
+              <img v-if="flags.includes( show.original_language )" :src="'icons/' + show.original_language + '.png'" :alt="show.original_language">
+              <span v-else class="text--desc">{{ show.original_language }}</span>
             </li>
-            <li class="text--feat">Overview: <span class="text--desc">{{ show.overview }}</span></li>
+            <li v-if="show.overview.length > 0" class="text--feat">Overview: <span class="text--desc">{{ show.overview }}</span></li>
           </ul>
         </li>
       </ul>
