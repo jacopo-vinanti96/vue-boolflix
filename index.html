@@ -27,8 +27,9 @@
       <div class="main-container">
         <!-- Template film -->
         <h2 v-if="moviesQuery.length > 0" class="section-title" >Film</h2>
+        <i @click="nextMoviesIndex()" class="fas fa-angle-left"></i>
         <ul class="section-container">
-          <li v-for="movie in moviesQuery" class="size-container">
+          <li v-for="(movie, i) in moviesQuery" v-show="moviesQueryShow.includes(i)" class="size-container">
             <div class="movie-container">
               <div class="movie-card">
                 <img v-if="movie.poster_path != null" class="img--poster" :src="'https://image.tmdb.org/t/p/w300' + movie.poster_path" alt="movie.title">
@@ -56,21 +57,25 @@
                   <img v-if="flags.includes( movie.original_language )" :src="'icons/' + movie.original_language + '.png'" :alt="movie.original_language">
                   <span v-else class="text--desc">{{ movie.original_language }}</span>
                 </li>
-                <li v-if="movie.overview.length > 0" class="text--feat">Overview: <span class="text--desc">{{ movie.overview }}</span></li>
+                <li v-if="movie.overview.length > 0" class="text--feat">Overview: <span class="text--desc">{{ movie.overview }}</span>
+                </li>
               </ul>
             </div>
           </li>
         </ul>
+        <i @click="nextMoviesIndex()" class="fas fa-angle-right"></i>
         <div class="pages-container">
           <ul class="pages">
             <li><span>Pagine: </span></li>
-            <li v-for="page in moviePages" class="page"><button class="btn btn--mov" :class="{ 'btn--selected': btnMovSelected == page }" @click="getMovies(page);" type="button" name="button" :value="page">{{ page }}</button></li>
+            <li v-for="page in moviePages" class="page"><button class="btn btn--mov" :class="{ 'btn--selected': btnMovSelected == page }" @click="getMovies(page);" type="button" name="button" :value="page">{{ page }}</button>
+            </li>
           </ul>
         </div>
         <!-- Template serie tv -->
         <h2 v-if="tvSeriesQuery.length > 0" class="section-title">Serie tv</h2>
+        <i @click="nextTvIndex()" class="fas fa-angle-left"></i>
         <ul class="section-container">
-          <li v-for="show in tvSeriesQuery" class="size-container">
+          <li v-for="( show, i ) in tvSeriesQuery" v-show="tvSeriesQueryShow.includes(i)" class="size-container">
             <div class="movie-container">
               <div class="movie-card">
                 <img v-if="show.poster_path != null" class="img--poster" :src="'https://image.tmdb.org/t/p/w300' + show.poster_path" alt="show.name">
@@ -103,6 +108,7 @@
             </div>
           </li>
         </ul>
+        <i @click="nextTvIndex()" class="fas fa-angle-right"></i>
         <div class="pages-container">
           <ul class="pages">
             <li><span>Pagine: </span></li>

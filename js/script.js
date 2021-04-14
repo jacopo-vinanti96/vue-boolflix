@@ -15,6 +15,8 @@ const app = new Vue ({
     },
     moviesQuery: [],
     tvSeriesQuery: [],
+    moviesQueryShow: [],
+    tvSeriesQueryShow: [],
     TitleInput: '',
     moviePages: 1,
     tvPages: 1,
@@ -42,6 +44,8 @@ const app = new Vue ({
         this.moviePages = arr.data.total_pages;
         this.btnMovSelected = page;
         this.convertVoteAvg(this.moviesQuery);
+        this.moviesQueryShow = [];
+        this.setMoviesIndex();
       });
     },
     getSeries(page = 1) {
@@ -51,7 +55,59 @@ const app = new Vue ({
         this.tvPages = arr.data.total_pages;
         this.btnTvSelected = page;
         this.convertVoteAvg(this.tvSeriesQuery);
+        this.tvSeriesQueryShow = [];
+        this.setTvIndex();
       });
+    },
+    setMoviesIndex() {
+      let i = 0;
+      while ( i < 4 && i < this.moviesQuery.length - 1 ) {
+        this.moviesQueryShow.push(i);
+        i++;
+      }
+    },
+    nextMoviesIndex() {
+      if ( this.moviesQueryShow[ this.moviesQueryShow.length - 1 ] != this.moviesQuery.length - 1 ) {
+        let i = 0;
+        let iMov = this.moviesQueryShow[ this.moviesQueryShow.length - 1 ];
+        while ( i < 4 && iMov + i < this.moviesQuery.length - 1 ) {
+          this.moviesQueryShow[i] = iMov + 1 + i;
+          i++;
+        }
+      }
+      this.moviesQueryShow.sort();
+      this.$forceUpdate();
+    },
+    prevMoviesIndex() {
+      if ( this.moviesQueryShow[ this.moviesQueryShow.length - 1 ] != this.moviesQuery.length - 1 ) {
+        let i = 0;
+        let iMov = this.moviesQueryShow[ this.moviesQueryShow.length - 1 ];
+        while ( i < 4 && iMov < this.moviesQuery.length - 1 ) {
+          this.moviesQueryShow[i] = iMov + 1 + i;
+          i++;
+        }
+      }
+      this.$forceUpdate();
+    },
+    setTvIndex() {
+      let i = 0;
+      while ( i < 4 && i < this.tvSeriesQuery.length - 1 ) {
+        this.tvSeriesQueryShow.push(i);
+        i++;
+      }
+    },
+    nextTvIndex() {
+      if ( this.tvSeriesQueryShow[ this.tvSeriesQueryShow.length - 1 ] != this.tvSeriesQuery.length - 1 ) {
+        console.log('ciao');
+        let i = 0;
+        const iMov = this.tvSeriesQueryShow[ this.tvSeriesQueryShow.length - 1 ];
+        while ( i < 4 && ( iMov + i ) < this.tvSeriesQuery.length - 1 ) {
+          this.tvSeriesQueryShow[i] = iMov + 1 + i;
+          i++;
+        }
+      }
+      this.tvSeriesQueryShow.sort();
+      this.$forceUpdate();
     },
     convertVoteAvg(thisArr) {
       thisArr.forEach( (movie) => {
