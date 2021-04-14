@@ -42,7 +42,25 @@ ul {
 
 .fa-angle-right,
 .fa-angle-left {
-  font-size: 30px;
+  font-size: 60px;
+  width: 80px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.fa-angle-right:hover {
+  background: linear-gradient(
+    90deg,
+    rgba(255,255,255,0) 0%,
+    rgba(0,0,0,1) 100%);
+}
+
+.fa-angle-left:hover {
+  background: linear-gradient(
+    270deg,
+    rgba(255,255,255,0) 0%,
+    rgba(0,0,0,1) 100%);
 }
 
 /* Typo */
@@ -92,7 +110,7 @@ main {
   overflow-y: auto;
   overflow-x: hidden;
   height: calc( 100% - 85px);
-  padding: 26px 120px 60px;
+  padding: 26px 0 60px;
   margin: auto;
   margin-top: 85px;
   width: 100%;
@@ -100,8 +118,8 @@ main {
 
 .section-container {
   display: flex;
-  justify-content: space-evenly;
-  width: 100%;
+  justify-content: space-around;
+  width: calc( 100% - 160px);
 }
 
 .size-container {

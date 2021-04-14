@@ -24,11 +24,11 @@
       </div>
     </header>
     <main>
-      <div class="main-container">
+      <div v-if="moviesQuery.length > 0 && tvSeriesQuery.length > 0" class="main-container">
         <!-- Template film -->
-        <h2 v-if="moviesQuery.length > 0" class="section-title" >Film</h2>
-        <i @click="prevMoviesIndex()" class="fas fa-angle-left"></i>
-        <ul class="section-container">
+        <h2 v-show="moviesQuery.length > 0" class="section-title" >Film</h2>
+        <i v-show="moviesQuery.length > 0" @click="prevMoviesIndex()" class="fas fa-angle-left"></i>
+        <ul v-show="moviesQuery.length > 0" class="section-container">
           <li v-for="(movie, i) in moviesQuery" v-show="moviesQueryShow.includes(i)" class="size-container">
             <div class="movie-container">
               <div class="movie-card">
@@ -63,8 +63,8 @@
             </div>
           </li>
         </ul>
-        <i @click="nextMoviesIndex()" class="fas fa-angle-right"></i>
-        <div class="pages-container">
+        <i v-show="moviesQuery.length > 0" @click="nextMoviesIndex()" class="fas fa-angle-right"></i>
+        <div v-show="moviesQuery.length > 0" class="pages-container">
           <ul class="pages">
             <li><span>Pagine: </span></li>
             <li v-for="page in moviePages" class="page"><button class="btn btn--mov" :class="{ 'btn--selected': btnMovSelected == page }" @click="getMovies(page);" type="button" name="button" :value="page">{{ page }}</button>
@@ -72,9 +72,9 @@
           </ul>
         </div>
         <!-- Template serie tv -->
-        <h2 v-if="tvSeriesQuery.length > 0" class="section-title">Serie tv</h2>
-        <i @click="prevTvIndex()" class="fas fa-angle-left"></i>
-        <ul class="section-container">
+        <h2 v-show="tvSeriesQuery.length > 0" class="section-title">Serie tv</h2>
+        <i v-show="tvSeriesQuery.length > 0" @click="prevTvIndex()" class="fas fa-angle-left"></i>
+        <ul v-show="tvSeriesQuery.length > 0" class="section-container">
           <li v-for="( show, i ) in tvSeriesQuery" v-show="tvSeriesQueryShow.includes(i)" class="size-container">
             <div class="movie-container">
               <div class="movie-card">
@@ -108,8 +108,8 @@
             </div>
           </li>
         </ul>
-        <i @click="nextTvIndex()" class="fas fa-angle-right"></i>
-        <div class="pages-container">
+        <i v-show="tvSeriesQuery.length > 0" @click="nextTvIndex()" class="fas fa-angle-right"></i>
+        <div v-show="tvSeriesQuery.length > 0" class="pages-container">
           <ul class="pages">
             <li><span>Pagine: </span></li>
             <li v-for="page in tvPages" class="page"><button class="btn btn--tv" :class="{ 'btn--selected': btnTvSelected == page }" @click="getSeries(page);" type="button" name="button" :value="page">{{ page }}</button></li>
