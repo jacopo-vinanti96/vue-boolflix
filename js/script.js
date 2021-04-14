@@ -69,24 +69,27 @@ const app = new Vue ({
     nextMoviesIndex() {
       if ( this.moviesQueryShow[ this.moviesQueryShow.length - 1 ] != this.moviesQuery.length - 1 ) {
         let i = 0;
-        let iMov = this.moviesQueryShow[ this.moviesQueryShow.length - 1 ];
+        const iMov = this.moviesQueryShow[ this.moviesQueryShow.length - 1 ];
+        this.moviesQueryShow = [];
         while ( i < 4 && iMov + i < this.moviesQuery.length - 1 ) {
           this.moviesQueryShow[i] = iMov + 1 + i;
           i++;
         }
       }
-      this.moviesQueryShow.sort();
       this.$forceUpdate();
     },
     prevMoviesIndex() {
-      if ( this.moviesQueryShow[ this.moviesQueryShow.length - 1 ] != this.moviesQuery.length - 1 ) {
+      if ( this.moviesQueryShow[0] != 0 ) {
         let i = 0;
-        let iMov = this.moviesQueryShow[ this.moviesQueryShow.length - 1 ];
-        while ( i < 4 && iMov < this.moviesQuery.length - 1 ) {
-          this.moviesQueryShow[i] = iMov + 1 + i;
+        let iMov = this.moviesQueryShow[0];
+        while ( i < 4 && iMov - i > 0 ) {
+          this.moviesQueryShow[i] = iMov - 1 - i;
           i++;
         }
       }
+      this.moviesQueryShow.sort(function(n1, n2) {
+        return n1 - n2;
+      });
       this.$forceUpdate();
     },
     setTvIndex() {
@@ -101,12 +104,26 @@ const app = new Vue ({
         console.log('ciao');
         let i = 0;
         const iMov = this.tvSeriesQueryShow[ this.tvSeriesQueryShow.length - 1 ];
+        this.tvSeriesQueryShow = [];
         while ( i < 4 && ( iMov + i ) < this.tvSeriesQuery.length - 1 ) {
           this.tvSeriesQueryShow[i] = iMov + 1 + i;
           i++;
         }
       }
-      this.tvSeriesQueryShow.sort();
+      this.$forceUpdate();
+    },
+    prevTvIndex() {
+      if ( this.tvSeriesQueryShow[0] != 0 ) {
+        let i = 0;
+        let iMov = this.tvSeriesQueryShow[0];
+        while ( i < 4 && iMov - i > 0 ) {
+          this.tvSeriesQueryShow[i] = iMov - 1 - i;
+          i++;
+        }
+      }
+      this.tvSeriesQueryShow.sort(function(n1, n2) {
+        return n1 - n2;
+      });
       this.$forceUpdate();
     },
     convertVoteAvg(thisArr) {

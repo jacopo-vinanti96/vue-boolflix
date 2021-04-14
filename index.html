@@ -27,7 +27,7 @@
       <div class="main-container">
         <!-- Template film -->
         <h2 v-if="moviesQuery.length > 0" class="section-title" >Film</h2>
-        <i @click="nextMoviesIndex()" class="fas fa-angle-left"></i>
+        <i @click="prevMoviesIndex()" class="fas fa-angle-left"></i>
         <ul class="section-container">
           <li v-for="(movie, i) in moviesQuery" v-show="moviesQueryShow.includes(i)" class="size-container">
             <div class="movie-container">
@@ -73,7 +73,7 @@
         </div>
         <!-- Template serie tv -->
         <h2 v-if="tvSeriesQuery.length > 0" class="section-title">Serie tv</h2>
-        <i @click="nextTvIndex()" class="fas fa-angle-left"></i>
+        <i @click="prevTvIndex()" class="fas fa-angle-left"></i>
         <ul class="section-container">
           <li v-for="( show, i ) in tvSeriesQuery" v-show="tvSeriesQueryShow.includes(i)" class="size-container">
             <div class="movie-container">
