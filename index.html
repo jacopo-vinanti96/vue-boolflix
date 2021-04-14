@@ -24,7 +24,7 @@
       </div>
     </header>
     <main>
-      <div v-if="moviesQuery.length > 0 && tvSeriesQuery.length > 0" class="main-container">
+      <div class="main-container">
         <!-- Template film -->
         <h2 v-show="moviesQuery.length > 0" class="section-title" >Film</h2>
         <i v-show="moviesQuery.length > 0" @click="prevMoviesIndex()" class="fas fa-angle-left"></i>

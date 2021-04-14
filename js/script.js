@@ -63,7 +63,7 @@ const app = new Vue ({
     },
     setMoviesIndex() {
       let i = 0;
-      while ( i < 4 && i < this.moviesQuery.length - 1 ) {
+      while ( i < 4 && i < this.moviesQuery.length ) {
         this.moviesQueryShow.push(i);
         i++;
       }
@@ -96,7 +96,7 @@ const app = new Vue ({
     },
     setTvIndex() {
       let i = 0;
-      while ( i < 4 && i < this.tvSeriesQuery.length - 1 ) {
+      while ( i < 4 && i < this.tvSeriesQuery.length ) {
         this.tvSeriesQueryShow.push(i);
         i++;
       }
