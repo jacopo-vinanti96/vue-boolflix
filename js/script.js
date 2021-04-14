@@ -31,10 +31,12 @@ const app = new Vue ({
       return axios.get( this.baseURL + type, this.paramsAxios );
     },
     search() {
-      this.TitleInput = document.getElementById('title-search').value;
-      if ( this.TitleInput != '' ) {
-        this.getMovies();
-        this.getSeries();
+      if ( document.getElementById('title-search').value != '' ) {
+        this.TitleInput = document.getElementById('title-search').value;
+        if ( this.TitleInput != '' ) {
+          this.getMovies();
+          this.getSeries();
+        }
       }
     },
     getMovies(page = 1) {
