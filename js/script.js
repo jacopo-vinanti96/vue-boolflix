@@ -107,7 +107,7 @@ const app = new Vue ({
         let i = 0;
         const iMov = this.tvSeriesQueryShow[ this.tvSeriesQueryShow.length - 1 ];
         this.tvSeriesQueryShow = [];
-        while ( i < 4 && ( iMov + i ) < this.tvSeriesQuery.length - 1 ) {
+        while ( i < 4 && iMov + i < this.tvSeriesQuery.length - 1 ) {
           this.tvSeriesQueryShow[i] = iMov + 1 + i;
           i++;
         }
